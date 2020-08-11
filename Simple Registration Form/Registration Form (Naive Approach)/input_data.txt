@@ -1,2 +1,1 @@
 ('Name', 'City', 'Registration Number', 'Nationality (1 for Indian)')
-('Yashasvi Bhatt', 'Jaipur', 1, 1)

@@ -27,7 +27,7 @@ def SaveToDatabase():
 
     # Setting up the Python-MySQL Database Connectivity
     db = mysql.connector.connect(host = 'localhost', user = 'root', passwd = 'root', database = 'tkinter_projects')
-    query = (f'INSERT INTO simple_registration VALUES (\'{name}\', \'{city}\', {reg_num}, \'{nationality}\')')
+    query = (f'INSERT INTO registration VALUES (\'{name}\', \'{city}\', {reg_num}, \'{nationality}\')')
     cursor = db.cursor()                # to perform sql query
     cursor.execute(query)
     db.commit()

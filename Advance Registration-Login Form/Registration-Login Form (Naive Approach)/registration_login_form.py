@@ -79,7 +79,6 @@ def Register():
 def RegisterDetails():
     if os.path.isfile(username.get()):
         messagebox.showwarning('Username Exists', 'You are already Registered, Please Login')
-        Label(root_register_screen, text="Registration Failed", fg="red", font='comicsansms 8 bold').pack()
         sleep(1)
         quit()
     else:
@@ -147,14 +146,12 @@ def LoginDetails():
             AfterLogin()
         else:
             messagebox.showinfo('Login Failed', 'Password Incorrect')
-            Label(root_login_screen, text="Login Failed", fg="red", font='comicsansms 8 bold').pack()
             sleep(1)
             quit()
     else:
         messagebox.showinfo('Login Failed', 'Username Doesn\'t Exist')
-        Label(root_login_screen, text="Login Failed", fg="red", font='comicsansms 8 bold').pack()
         sleep(1)
-        quit
+        quit()
 
     username_login.set('')
     password_login.set('')

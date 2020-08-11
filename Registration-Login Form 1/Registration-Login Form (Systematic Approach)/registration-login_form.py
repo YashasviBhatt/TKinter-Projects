@@ -1,4 +1,4 @@
-# Storing the data in File (Using File Handling)
+# Storing the data in Database (Using MySQL Database)
 
 # Importing Tkinter
 from tkinter import *

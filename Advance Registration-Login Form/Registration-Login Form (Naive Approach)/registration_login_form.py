@@ -42,7 +42,7 @@ def Register():
     username = StringVar()
     password = StringVar()
     email = StringVar()
-    contact = StringVar()
+    contact = IntVar()
 
     # Creating Entry Fields
 
@@ -89,7 +89,7 @@ def RegisterDetails():
         file.write(username.get() + '\n')
         file.write(password.get() + '\n')
         file.write(email.get() + '\n')
-        file.write(contact.get())
+        file.write(str(contact.get()))
         file.close()
         Label(root_register_screen, text="Registration Success", fg="green", font='comicsansms 8 bold').pack()
         sleep(2)
@@ -151,7 +151,7 @@ def LoginDetails():
     else:
         messagebox.showinfo('Login Failed', 'Username Doesn\'t Exist')
         sleep(1)
-        quit()
+        quit
 
     username_login.set('')
     password_login.set('')

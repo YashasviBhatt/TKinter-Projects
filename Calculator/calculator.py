@@ -61,7 +61,7 @@ for line in range(5):
     for value in button[line]:
         b = Button(f, text = value, font = 'lucida 20 bold', width = 3, borderwidth = 10)
         b.pack(side='left', padx = 10, pady = 10)
-        b.bind('<Button-1>', click)
+        b.bind('<Button-1>', click)                                         # binding the button with event
 
     f.pack()
 

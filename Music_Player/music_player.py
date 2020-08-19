@@ -44,12 +44,17 @@ def playMusic():
         mixer.music.load(music_list[current_seleted_file[0]])                           # loading the file
         mixer.music.play()                                                              # playing the file
     else:
-        for music_index in range(len(music_list)):
-            mixer.music.load(music_list[music_index])
-            mixer.music.play(1)
-            while mixer.music.get_busy():
-                print('You Window might be showing not responding, \ndon\'t worry, \nit will respond as soon as your playlist completely plays all songs')
-                continue
+        showerror('Can\'t Play', 'Select a Song First')
+
+
+# creating function to play all music from playlist
+def playAll():
+    print('Your Window might be showing not responding, \ndon\'t worry, \nit will respond as soon as your playlist completely plays all songs')
+    for music_index in range(len(music_list)):
+        mixer.music.load(music_list[music_index])
+        mixer.music.play(1)
+        while mixer.music.get_busy():
+            continue
 
 
 #-------------------------------------------------Programming Logic-------------------------------------------------
@@ -60,9 +65,9 @@ def playMusic():
 # setting up the GUI Window
 # opening the GUI Window
 root = Tk()
-root.geometry('488x345')                                                    # setting the default window size of GUI
-root.minsize(488, 345)                                                      # setting the minsize of GUI Window
-root.maxsize(488, 345)                                                      # setting the maxsize of GUI Window
+root.geometry('488x380')                                                    # setting the default window size of GUI
+root.minsize(488, 380)                                                      # setting the minsize of GUI Window
+root.maxsize(488, 380)                                                      # setting the maxsize of GUI Window
 root.title('Music Player by Yashasvi Bhatt')                                # setting the title to GUI Window
 root.wm_iconbitmap('images/music_icon.ico')                                 # setting the icon of GUI Window
 
@@ -76,10 +81,12 @@ Button(text = 'Add Music', command = addMusic, font = 'lucida 15 bold', borderwi
 Button(text = 'Remove Music', command = removeMusic, font = 'lucida 15 bold', borderwidth = 5, width = 12).place(x = 30, y = 175)
 # creating button to play the music from list
 Button(text = 'Play Music', command = playMusic, font = 'lucida 15 bold', borderwidth = 5, width = 12).place(x = 30, y = 240)
+# creating button to play all the music from list
+Button(text = 'Play All', command = playAll, font = 'lucida 15 bold', borderwidth = 5, width = 12).place(x = 30, y = 305)
 
 # creating list box which contains list of names of song
-songs_list = Listbox(width = 40, height = 12)
-songs_list.place(x = 210, y = 101)
+songs_list = Listbox(width = 40, height = 15)
+songs_list.place(x = 210, y = 109)
 
 # holding the window open
 root.mainloop()

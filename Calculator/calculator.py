@@ -52,7 +52,7 @@ input_field = Entry(textvariable = scvalue, font = 'lucida 30 bold').pack(padx =
 
 # creating buttons for calculator
 button = [['9', '8', '7', '+'], ['6', '5', '4', '-'], ['3', '2', '1', '*'], ['.', '0', '=', '/'], ['%', 'CLR', '00', 'CLS']]
-Label(text = '').pack()
+Label(text = '', bg = 'grey', width = 388).pack()
 for line in range(5):
     # creating frame for n line
     f = Frame(bg='grey')

@@ -87,6 +87,7 @@ def hlp():
 # opening the GUI window
 root = Tk()                                                                 # creating the root object of Tk class
 root.geometry('500x500')                                                    # setting the default window size of GUI
+root.minsize(400, 400)                                                      # setting the minimum size of GUI Window
 root.title('Untitled - Notepad by Yashasvi Bhatt')                          # giving the title of GUI Window
 root.wm_iconbitmap('images/notepad_icon.ico')                               # setting the icon of GUI Window
 

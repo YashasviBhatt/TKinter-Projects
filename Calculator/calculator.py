@@ -41,13 +41,13 @@ root.geometry('388x528')                                                    # se
 root.minsize(388, 528)                                                      # setting the minimum window size of GUI
 root.maxsize(388, 528)                                                      # setting the maximum window size of GUI
 root.title('Calculator by Yashasvi Bhatt')                                  # giving the title of GUI Window
-root.wm_iconbitmap('images/icon.ico')                                       # setting the icon of GUI Window
+root.wm_iconbitmap('images/calculator_icon.ico')                                       # setting the icon of GUI Window
 
 
 # setting the input field for calculator
 scvalue = StringVar()
 scvalue.set('')
-input_field = Entry(textvariable = scvalue, font = 'lucida 30 bold').pack(padx = 5)
+input_field = Entry(textvariable = scvalue, font = 'lucida 30 bold', borderwidth = 10).pack(padx = 5)
 
 
 # creating buttons for calculator

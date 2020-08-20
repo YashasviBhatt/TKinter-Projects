@@ -45,6 +45,7 @@ def removeMusic():
 
 # creating function to play music from list
 def playMusic():
+    pg.mixer.init()
     current_seleted_file = songs_list.curselection()
     if current_seleted_file:
         pg.mixer.music.load(music_list[current_seleted_file[0]])                           # loading the file

@@ -8,17 +8,18 @@ from tkinter import Listbox
 from tkinter.filedialog import askopenfilename
 import os
 from tkinter.messagebox import showerror
-from pygame import mixer
+import pygame as pg
+from playsound import  playsound
 
 
 #-------------------------------------------------Programming Logic-------------------------------------------------
 
 music_list = list()
-mixer.init()                                            # initializing the pygame mixer
 
 # creating function to add music to list
 def addMusic():
     global music_file
+    global music_list
     music_file = askopenfilename(defaultextension = '.mp3', filetypes=[("Music Files", "*.mp3")])
     if music_file != '':
         if music_file in music_list:
@@ -26,36 +27,81 @@ def addMusic():
         else:
             songs_list.insert('end', os.path.basename(music_file))
             music_list.append(music_file)
+    root.update()
 
 # creating function to remove music from list
 def removeMusic():
     current_selected_file = songs_list.curselection()
-    if current_selected_file:
-        songs_list.delete(current_selected_file)
-        music_list.pop(current_selected_file[0])
+    if len(music_list) != 0:
+        if current_selected_file:
+            songs_list.delete(current_selected_file)
+            music_list.pop(current_selected_file[0])
+        else:
+            songs_list.delete('end')
+            music_list.pop()
     else:
-        songs_list.delete('end')
-        music_list.pop()
+        showerror('Error Deleting Song', 'Nothing to Delete')
+    root.update()
 
 # creating function to play music from list
 def playMusic():
     current_seleted_file = songs_list.curselection()
     if current_seleted_file:
-        mixer.music.load(music_list[current_seleted_file[0]])                           # loading the file
-        mixer.music.play()                                                              # playing the file
+        pg.mixer.music.load(music_list[current_seleted_file[0]])                           # loading the file
+        pg.mixer.music.play()                                                              # playing the file
     else:
         showerror('Can\'t Play', 'Select a Song First')
 
 
 # creating function to play all music from playlist
 def playAll():
-    print('Your Window might be showing not responding, \ndon\'t worry, \nit will respond as soon as your playlist completely plays all songs')
-    for music_index in range(len(music_list)):
-        mixer.music.load(music_list[music_index])
-        mixer.music.play(1)
-        while mixer.music.get_busy():
-            continue
+    # setting up pygame window
+    pg.init()                                                       # initializing the pygame
+    screen = pg.display.set_mode((600, 400))                        # setting up the window size
+    pg.display.set_caption('Playlist Player')                       # setting the title of pygame window
+    background_image = pg.image.load("images/pygame.jpg").convert()
 
+    song_finished = pg.USEREVENT                                    # creating a custom event type
+    pg.mixer.music.set_endevent(song_finished)                      # when the music ends pygame will add the song_finished event to event queue
+    pg.mixer.music.load(music_list[0])                              # loading a playing the first music
+    pg.mixer.music.play()
+    music_index = 0                                                 # index of first song
+    done = False
+    pause = True
+
+    while not done:
+        screen.blit(background_image, (0, 0))                       # putting the text object on screen
+        for event in pg.event.get():
+            if event.type == pg.QUIT:                               # if user close the window
+                done = True
+            elif event.type == pg.KEYDOWN:                          # if user give key input using keyboaard
+                if event.key == pg.K_RIGHT:                         # if user press RIGHT KEY then next song will play
+                    if music_index < len(music_list) - 1:
+                        music_index += 1
+                        pg.mixer.music.load(music_list[music_index])
+                        pg.mixer.music.play()
+                elif event.key == pg.K_LEFT:                        # if user press LEFT KEY then previous song will play
+                    if music_index > 0:
+                        music_index -= 1
+                        pg.mixer.music.load(music_list[music_index])
+                        pg.mixer.music.play()
+                elif event.key == pg.K_SPACE:                       # if user press SPACE KEY then song will pause/resume
+                    if pause:
+                        pg.mixer.music.unpause()
+                        pause = False
+                    else:
+                        pg.mixer.music.pause()
+                        pause = True
+            # if no key command is given then
+            elif event.type == song_finished:
+                if music_index < len(music_list) - 1:
+                    pg.mixer.music.load(music_list[music_index + 1])
+                    pg.mixer.music.play()
+                else:                                               # if all songs played completely then stop
+                    pg.mixer.music.stop()
+                    print('You Playlist Complete')
+            pg.display.update()
+    pg.quit()
 
 #-------------------------------------------------Programming Logic-------------------------------------------------
 

@@ -12,7 +12,7 @@ contact DOUBLE
 );
 
 Now install Tkinter and mysql-python connector on python using these commands:
-pip install tkinter
-python -m pip install mysql-connector-python
+""""""""""""""""""""""""""""""pip install tkinter""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""python -m pip install mysql-connector-python""""""""""""""""""""""""""""""
 
 and now Execute the program :)

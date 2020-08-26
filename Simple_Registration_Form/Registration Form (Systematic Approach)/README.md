@@ -5,7 +5,7 @@ USE tkinter_projects;
 CREATE TABLE registration (name char(20), city char(20), reg_num int, nationality char(20));
 
 Now install Tkinter and mysql-python connector on python using these commands:
-pip install tkinter
-python -m pip install mysql-connector-python
+""""""""""""""""""""""""""""""pip install tkinter""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""python -m pip install mysql-connector-python""""""""""""""""""""""""""""""
 
 and now Execute the program :)

@@ -1,2 +1,2 @@
-Please Install TKinter using
+Please Install TKinter using this:
 pip install tkinter

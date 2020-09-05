@@ -2,14 +2,7 @@ Please Install MySQL on your system with "root" as both Username and Password wi
 <br>
 ```CREATE DATABASE tkinter_projects;```
 ```USE tkinter_projects;```
-```CREATE TABLE registration_login (
-name CHAR(20),
-registration_num VARCHAR(20),
-username VARCHAR(20),
-password VARCHAR(20),
-email VARCHAR(50),
-contact DOUBLE
-);```
+```CREATE TABLE registration_login (name CHAR(20), registration_num VARCHAR(20), username VARCHAR(20), password VARCHAR(20), email VARCHAR(50), contact DOUBLE);```
 <br>
 Now install Tkinter and mysql-python connector on python using these commands:
 <br>
